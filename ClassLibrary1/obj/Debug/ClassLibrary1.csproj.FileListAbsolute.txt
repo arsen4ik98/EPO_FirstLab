@@ -1,0 +1,10 @@
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\bin\Debug\ConsoleApplication1.exe
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\bin\Debug\nunit.framework.dll
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\bin\Debug\nunit.mocks.dll
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\bin\Debug\ConsoleApplication1.pdb
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\bin\Debug\nunit.framework.xml
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.csprojResolveAssemblyReference.cache
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
