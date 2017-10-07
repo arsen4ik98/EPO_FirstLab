@@ -1,0 +1,8 @@
+/home/wmelina/Рабочий стол/EPO_First/EPO_FirstLab/ConsoleApplication1/obj/Debug/.NETFramework,Version=v4.5.AssemblyAttribute.cs
+/home/wmelina/Рабочий стол/EPO_First/EPO_FirstLab/ConsoleApplication1/bin/Debug/ConsoleApplication1.exe.config
+/home/wmelina/Рабочий стол/EPO_First/EPO_FirstLab/ConsoleApplication1/bin/Debug/ConsoleApplication1.exe.mdb
+/home/wmelina/Рабочий стол/EPO_First/EPO_FirstLab/ConsoleApplication1/bin/Debug/ConsoleApplication1.pdb
+/home/wmelina/Рабочий стол/EPO_First/EPO_FirstLab/ConsoleApplication1/bin/Debug/ConsoleApplication1.exe
+/home/wmelina/Рабочий стол/EPO_First/EPO_FirstLab/ConsoleApplication1/obj/Debug/ConsoleApplication1.exe
+/home/wmelina/Рабочий стол/EPO_First/EPO_FirstLab/ConsoleApplication1/obj/Debug/ConsoleApplication1.exe.mdb
+/home/wmelina/Рабочий стол/EPO_First/EPO_FirstLab/ConsoleApplication1/obj/Debug/ConsoleApplication1.pdb
