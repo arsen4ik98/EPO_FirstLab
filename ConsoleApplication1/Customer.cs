@@ -7,8 +7,8 @@ namespace ConsoleApplication1
     // Класс, представляющий клиента магазина.
     public class Customer
     {
-        private int bonus;
-        private String name;
+        public int bonus;
+        public String name;
         public Customer(String name, int bonus)
         {
             this.name = name;
