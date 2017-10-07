@@ -8,3 +8,13 @@ C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\bin\Debug\nunit.fr
 C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.csprojResolveAssemblyReference.cache
 C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.dll
 C:\Users\Арсен\Desktop\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.pdb
+D:\ConsoleApplication1\ClassLibrary1\bin\Debug\ClassLibrary1.dll
+D:\ConsoleApplication1\ClassLibrary1\bin\Debug\ClassLibrary1.pdb
+D:\ConsoleApplication1\ClassLibrary1\bin\Debug\ConsoleApplication1.exe
+D:\ConsoleApplication1\ClassLibrary1\bin\Debug\nunit.framework.dll
+D:\ConsoleApplication1\ClassLibrary1\bin\Debug\nunit.mocks.dll
+D:\ConsoleApplication1\ClassLibrary1\bin\Debug\ConsoleApplication1.pdb
+D:\ConsoleApplication1\ClassLibrary1\bin\Debug\nunit.framework.xml
+D:\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.csprojResolveAssemblyReference.cache
+D:\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.dll
+D:\ConsoleApplication1\ClassLibrary1\obj\Debug\ClassLibrary1.pdb

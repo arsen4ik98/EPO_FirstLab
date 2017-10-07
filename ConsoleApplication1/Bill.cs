@@ -80,15 +80,7 @@ namespace ConsoleApplication1
                         discount =
                         (each.getQuantity() * each.getPrice()) * 0.01; // 0.1%
                     break;
-            }
-            if ((each.getGoods().getPriceCode() ==
-                Goods.REGULAR) && each.getQuantity() > 5)
-                    discount +=
-                    _customer.useBonus((int)(each.getQuantity() * each.getPrice()));
-                if ((each.getGoods().getPriceCode() ==
-                Goods.SPECIAL_OFFER) && each.getQuantity() > 1)
-                    discount =
-                    _customer.useBonus((int)(each.getQuantity() * each.getPrice()));
+            }         
             return discount;
         }
         public String statement()
@@ -100,20 +92,25 @@ namespace ConsoleApplication1
             List<Item>.Enumerator items = _items.GetEnumerator();
             while (items.MoveNext())
             {
-                double thisAmount,discount = 0;
+                double thisAmount= 0;
                 int bonus = 0;
                 Item each = (Item)items.Current;
                 //определить сумму для каждой строки
 
                 // сумма
-                thisAmount = each.getQuantity() * each.getPrice();
+                thisAmount = getSum(each);
                 // используем бонусы
                 
                 // учитываем скидку
-                thisAmount =
-                each.getQuantity() * each.getPrice() - discount;
+                thisAmount-= getUsedBonus(each);
                 //показать результаты
-                 result += GetItemString(each ,thisAmount, discount, bonus);
+
+                result += GetItemString(each, thisAmount, getUsedBonus(each), bonus);
+                //result += "\t" + each.getGoods().getTitle() + "\t" +
+                //"\t" + each.getPrice() + "\t" + each.getQuantity() +
+                //"\t" + (each.getQuantity() * each.getPrice()).ToString() +
+                //"\t" + discount.ToString() + "\t" + thisAmount.ToString() +
+                //"\t" + bonus.ToString() + "\n";
                 totalAmount += thisAmount;
                 totalBonus += bonus;
             }
@@ -122,6 +119,22 @@ namespace ConsoleApplication1
            result += GetFooter(totalAmount, totalBonus);
             _customer.receiveBonus(totalBonus);
             return result;
+        }
+        public double getSum(Item each) {
+            double result = each.getQuantity() * each.getPrice();
+            return result;
+        }
+        public double getUsedBonus(Item each) {
+            double discount = 0;
+            if ((each.getGoods().getPriceCode() ==
+                Goods.REGULAR) && each.getQuantity() > 5)
+                    discount +=
+                    _customer.useBonus((int)(getSum(each)));
+                if ((each.getGoods().getPriceCode() ==
+                Goods.SPECIAL_OFFER) && each.getQuantity() > 1)
+                    discount =
+                    _customer.useBonus((int)(getSum(each)));
+                    return discount;
         }
     }
 }
