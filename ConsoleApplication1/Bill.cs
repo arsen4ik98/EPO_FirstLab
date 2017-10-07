@@ -41,7 +41,50 @@ namespace ConsoleApplication1
             "\t" + discount.ToString() + "\t" + thisAmount.ToString() +
             "\t" + bonus.ToString() + "\n";
             return result;
-        } 
+        }
+        public double GetBonus(Item each)
+        {
+            int bonus = 0;
+             switch (each.getGoods().getPriceCode())
+                {
+
+                    case Goods.REGULAR:
+                        if (each.getQuantity() > 2)
+                        bonus =
+                        (int)(each.getQuantity() * each.getPrice() * 0.05);
+                        break;                     
+                    case Goods.SALE:
+                        if (each.getQuantity() > 3)
+                        bonus =
+                        (int)(each.getQuantity() * each.getPrice() * 0.01);
+                        break;
+                }
+             return bonus;
+        }
+
+        public double GetDiscount(Item each)
+        {
+            double discount = 0;
+            switch (each.getGoods().getPriceCode())
+            {
+                case Goods.REGULAR:
+                    if (each.getQuantity() > 2)
+                        discount =
+                        (each.getQuantity() * each.getPrice()) * 0.03; // 3%
+                    break;
+                case Goods.SPECIAL_OFFER:
+                    if (each.getQuantity() > 10)
+                        discount =
+                        (each.getQuantity() * each.getPrice()) * 0.005; // 0.5%
+                    break;
+                case Goods.SALE:
+                    if (each.getQuantity() > 3)
+                        discount =
+                        (each.getQuantity() * each.getPrice()) * 0.01; // 0.1%
+                    break;
+            }
+            return discount;
+        }
         public String statement()
         {
             double totalAmount = 0;
@@ -60,28 +103,28 @@ namespace ConsoleApplication1
                 int bonus = 0;
                 Item each = (Item)items.Current;
                 //определить сумму для каждой строки
-                switch (each.getGoods().getPriceCode())
-                {
-                    case Goods.REGULAR:
-                        if (each.getQuantity() > 2)
-                            discount =
-                            (each.getQuantity() * each.getPrice()) * 0.03; // 3%
-                        bonus =
-                        (int)(each.getQuantity() * each.getPrice() * 0.05);
-                        break;
-                    case Goods.SPECIAL_OFFER:
-                        if (each.getQuantity() > 10)
-                            discount =
-                            (each.getQuantity() * each.getPrice()) * 0.005; // 0.5%
-                        break;
-                    case Goods.SALE:
-                        if (each.getQuantity() > 3)
-                            discount =
-                            (each.getQuantity() * each.getPrice()) * 0.01; // 0.1%
-                        bonus =
-                        (int)(each.getQuantity() * each.getPrice() * 0.01);
-                        break;
-                }
+                //switch (each.getGoods().getPriceCode())
+                //{
+                //    case Goods.REGULAR:
+                //        if (each.getQuantity() > 2)
+                //            discount =
+                //            (each.getQuantity() * each.getPrice()) * 0.03; // 3%
+                //        bonus =
+                //        (int)(each.getQuantity() * each.getPrice() * 0.05);
+                //        break;
+                //    case Goods.SPECIAL_OFFER:
+                //        if (each.getQuantity() > 10)
+                //            discount =
+                //            (each.getQuantity() * each.getPrice()) * 0.005; // 0.5%
+                //        break;
+                //    case Goods.SALE:
+                //        if (each.getQuantity() > 3)
+                //            discount =
+                //            (each.getQuantity() * each.getPrice()) * 0.01; // 0.1%
+                //        bonus =
+                //        (int)(each.getQuantity() * each.getPrice() * 0.01);
+                //        break;
+                //}
                 // сумма
                 thisAmount = each.getQuantity() * each.getPrice();
                 // используем бонусы
