@@ -7,9 +7,9 @@ namespace ConsoleApplication1
     // Класс, представляющий данные о чеке
     public class Item
     {
-        private Goods _Goods;
-        private int _quantity;
-        private double _price;
+        public Goods _Goods;
+        public int _quantity;
+        public double _price;
         public Item(Goods Goods, int quantity, double price)
         {
             _Goods = Goods;

@@ -17,15 +17,42 @@ namespace ConsoleApplication1
         {
             _items.Add(arg);
         }
-        public String statement()
+
+        public string GetHeader()
         {
-            double totalAmount = 0;
-            int totalBonus = 0;
-            List<Item>.Enumerator items = _items.GetEnumerator();
-            String result = "Счет для " + _customer.getName() + "\n";
+            string result = "Счет для " + _customer.getName() + "\n";
             result += "\t" + "Название" + "\t" + "Цена" +
             "\t" + "Кол-во" + "Стоимость" + "\t" + "Скидка" +
             "\t" + "Сумма" + "\t" + "Бонус" + "\n";
+            return result;
+        }
+        public string GetFooter( double totalAmount, int totalBonus)
+        {
+         string  result = "Сумма счета составляет " +
+           totalAmount.ToString() + "\n" + "Вы заработали " + totalBonus.ToString() + " бонусных баллов";
+          
+            return result;
+        }
+        public string GetItemString(Item each, double thisAmount, double discount, int bonus)
+        {
+          string  result = "\t" + each.getGoods().getTitle() + "\t" +
+            "\t" + each.getPrice() + "\t" + each.getQuantity() +
+            "\t" + (each.getQuantity() * each.getPrice()).ToString() +
+            "\t" + discount.ToString() + "\t" + thisAmount.ToString() +
+            "\t" + bonus.ToString() + "\n";
+            return result;
+        } 
+        public String statement()
+        {
+            double totalAmount = 0;
+            string result = GetHeader();
+        
+            int totalBonus = 0;
+            List<Item>.Enumerator items = _items.GetEnumerator();
+            //String result = "Счет для " + _customer.getName() + "\n";
+            //result += "\t" + "Название" + "\t" + "Цена" +
+            //"\t" + "Кол-во" + "Стоимость" + "\t" + "Скидка" +
+            //"\t" + "Сумма" + "\t" + "Бонус" + "\n";
             while (items.MoveNext())
             {
                 double thisAmount = 0;
@@ -70,20 +97,22 @@ namespace ConsoleApplication1
                 thisAmount =
                 each.getQuantity() * each.getPrice() - discount;
                 //показать результаты
-                result += "\t" + each.getGoods().getTitle() + "\t" +
-                "\t" + each.getPrice() + "\t" + each.getQuantity() +
-                "\t" + (each.getQuantity() * each.getPrice()).ToString() +
-                "\t" + discount.ToString() + "\t" + thisAmount.ToString() +
-                "\t" + bonus.ToString() + "\n";
+                 result += GetItemString(each ,thisAmount, discount, bonus);
+                //result += "\t" + each.getGoods().getTitle() + "\t" +
+                //"\t" + each.getPrice() + "\t" + each.getQuantity() +
+                //"\t" + (each.getQuantity() * each.getPrice()).ToString() +
+                //"\t" + discount.ToString() + "\t" + thisAmount.ToString() +
+                //"\t" + bonus.ToString() + "\n";
                 totalAmount += thisAmount;
                 totalBonus += bonus;
             }
             //добавить нижний колонтитул
-            result += "Сумма счета составляет " +
-            totalAmount.ToString() + "\n";
-            result += "Вы заработали " +
-                totalBonus.ToString() + " бонусных баллов";
+            //result += "Сумма счета составляет " +
+            //totalAmount.ToString() + "\n";
+            //result += "Вы заработали " +
+            //    totalBonus.ToString() + " бонусных баллов";
             //Запомнить бонус клиента
+           result += GetFooter(totalAmount, totalBonus);
             _customer.receiveBonus(totalBonus);
             return result;
         }
