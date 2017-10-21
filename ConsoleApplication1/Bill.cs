@@ -2,6 +2,8 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Threading.Tasks;
+
 namespace ConsoleApplication1
 {
     public class Bill
@@ -13,6 +15,7 @@ namespace ConsoleApplication1
             this._customer = customer;
             this._items = new List<Item>();
         }
+
         public void addGoods(Item arg)
         {
             _items.Add(arg);
@@ -26,40 +29,22 @@ namespace ConsoleApplication1
             "\t" + "Сумма" + "\t" + "Бонус" + "\n";
             return result;
         }
-        public string GetFooter( double totalAmount, int totalBonus)
+        public string GetFooter(double totalAmount, int totalBonus)
         {
-         string  result = "Сумма счета составляет " +
-           totalAmount.ToString() + "\n" + "Вы заработали " + totalBonus.ToString() + " бонусных баллов";
+            string result = "Сумма счета составляет " +
+              totalAmount.ToString() + "\n" + "Вы заработали " + totalBonus.ToString() + " бонусных баллов";
             return result;
         }
-        public string GetItemString(Item each, double thisAmount, double discount, int bonus)
+        public string GetItemString(double thisAmount, double discount, int bonus, Item each)
         {
-          string  result = "\t" + each.getGoods().getTitle() + "\t" +
-            "\t" + each.getPrice() + "\t" + each.getQuantity() +
-            "\t" + (each.getQuantity() * each.getPrice()).ToString() +
-            "\t" + discount.ToString() + "\t" + thisAmount.ToString() +
-            "\t" + bonus.ToString() + "\n";
+            string result = "\t" + each.getGoods().getTitle() + "\t" +
+              "\t" + each.getPrice() + "\t" + each.getQuantity() +
+              "\t" + (each.getQuantity() * each.getPrice()).ToString() +
+              "\t" + discount.ToString() + "\t" + thisAmount.ToString() +
+              "\t" + bonus.ToString() + "\n";
             return result;
         }
-        public double GetBonus(Item each)
-        {
-            int bonus = 0;
-             switch (each.getGoods().getPriceCode())
-                {
 
-                    case Goods.REGULAR:
-                        if (each.getQuantity() > 2)
-                        bonus =
-                        (int)(each.getQuantity() * each.getPrice() * 0.05);
-                        break;                     
-                    case Goods.SALE:
-                        if (each.getQuantity() > 3)
-                        bonus =
-                        (int)(each.getQuantity() * each.getPrice() * 0.01);
-                        break;
-                }
-             return bonus;
-        }
         public double GetDiscount(Item each)
         {
             double discount = 0;
@@ -78,63 +63,80 @@ namespace ConsoleApplication1
                 case Goods.SALE:
                     if (each.getQuantity() > 3)
                         discount =
-                        (each.getQuantity() * each.getPrice()) * 0.01; // 0.1%
+                        (each.getQuantity() * each.getPrice()) * 0.01; // 1%
                     break;
-            }         
+            }
             return discount;
         }
+
+        public int GetBonus(Item each)
+        {
+            int bonus = 0;
+            switch (each.getGoods().getPriceCode())
+            {
+                case Goods.REGULAR:
+                    bonus = (int)(GetSum(each) * 0.05);
+                    break;
+                case Goods.SALE:
+                    bonus = (int)(GetSum(each) * 0.01);
+                    break;
+            }
+            return bonus;
+        }
+
+        public double GetSum(Item each)
+        {
+            double getsum = each.getQuantity() * each.getPrice();
+            return getsum;
+        }
+
+        public double GetUsedBonus(Item each, double thisAmount, double discount)
+        {
+            double usedBonus = 0;
+            if ((each.getGoods().getPriceCode() == Goods.REGULAR) && each.getQuantity() > 5)
+            {
+                usedBonus += _customer.useBonus((int)(thisAmount - discount));
+            }
+            if ((each.getGoods().getPriceCode() == Goods.SPECIAL_OFFER) && each.getQuantity() > 1)
+            {
+                usedBonus += _customer.useBonus((int)(thisAmount - discount));
+            }
+            return usedBonus;
+        }
+
         public String statement()
         {
             double totalAmount = 0;
-            string result = GetHeader();
-        
             int totalBonus = 0;
             List<Item>.Enumerator items = _items.GetEnumerator();
+            string result = GetHeader();
             while (items.MoveNext())
             {
-                double thisAmount= 0;
-                int bonus = 0;
+                double sumWithDiscount = 0;
+                double usedBonus = 0;
+                double thisAmount = 0;
+
                 Item each = (Item)items.Current;
                 //определить сумму для каждой строки
-
+                double discount = GetDiscount(each);
+                int bonus = GetBonus(each);
                 // сумма
-                thisAmount = getSum(each);
-                // используем бонусы
-                
+                sumWithDiscount = GetSum(each) - discount;
+                usedBonus = GetUsedBonus(each, sumWithDiscount, discount);
                 // учитываем скидку
-                thisAmount-= getUsedBonus(each);
+                thisAmount = sumWithDiscount - usedBonus;
                 //показать результаты
-
-                result += GetItemString(each, thisAmount, getUsedBonus(each), bonus);
-                //result += "\t" + each.getGoods().getTitle() + "\t" +
-                //"\t" + each.getPrice() + "\t" + each.getQuantity() +
-                //"\t" + (each.getQuantity() * each.getPrice()).ToString() +
-                //"\t" + discount.ToString() + "\t" + thisAmount.ToString() +
-                //"\t" + bonus.ToString() + "\n";
+                result += GetItemString(thisAmount, discount, bonus, each);
+            
                 totalAmount += thisAmount;
                 totalBonus += bonus;
             }
             //добавить нижний колонтитул
             //Запомнить бонус клиента
-           result += GetFooter(totalAmount, totalBonus);
+            result += GetFooter(totalAmount, totalBonus);
             _customer.receiveBonus(totalBonus);
             return result;
         }
-        public double getSum(Item each) {
-            double result = each.getQuantity() * each.getPrice();
-            return result;
-        }
-        public double getUsedBonus(Item each) {
-            double discount = 0;
-            if ((each.getGoods().getPriceCode() ==
-                Goods.REGULAR) && each.getQuantity() > 5)
-                    discount +=
-                    _customer.useBonus((int)(getSum(each)));
-                if ((each.getGoods().getPriceCode() ==
-                Goods.SPECIAL_OFFER) && each.getQuantity() > 1)
-                    discount =
-                    _customer.useBonus((int)(getSum(each)));
-                    return discount;
-        }
+
     }
 }

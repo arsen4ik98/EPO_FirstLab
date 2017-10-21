@@ -13,6 +13,22 @@ namespace ClassLibrary1
     public class test
     {
         [Test()]
+
+        public void Test_PepsiCola1()
+        {
+            Goods cola = new Goods("Cola", Goods.REGULAR);
+            Goods pepsi = new Goods("Pepsi", Goods.SALE);
+            Item i1 = new Item(cola, 1, 65);
+            Item i2 = new Item(pepsi, 4, 50);
+            Customer x = new Customer("test", 10);
+            Bill b1 = new Bill(x);
+            b1.addGoods(i1);
+            b1.addGoods(i2);
+            string actual = b1.statement();
+            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t1\t65\t0\t65\t3\n\tPepsi\t\t50\t4\t200\t2\t198\t2\nСумма счета составляет 263\nВы заработали 5 бонусных баллов";
+            Assert.AreEqual(expected, actual);
+        }
+       [Test()]
         public void Test_PepsiCola()
         {
             Goods cola = new Goods("Cola", Goods.REGULAR);
@@ -24,7 +40,7 @@ namespace ClassLibrary1
             b1.addGoods(i1);
             b1.addGoods(i2);
             string actual = b1.statement();
-            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t21,7\t368,3\t19\n\tPepsi\t\t50\t3\t150\t0\t150\t1\nСумма счета составляет 518,3\nВы заработали 20 бонусных баллов";
+            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t11,7\t368,3\t19\n\tPepsi\t\t50\t3\t150\t0\t150\t1\nСумма счета составляет 518,3\nВы заработали 20 бонусных баллов";
             Assert.AreEqual(expected, actual);
         }
         [Test()]
@@ -36,7 +52,7 @@ namespace ClassLibrary1
             Bill b1 = new Bill(x);
             b1.addGoods(i1);
             string actual = b1.statement();
-            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t21,7\t368,3\t19\nСумма счета составляет 368,3\nВы заработали 19 бонусных баллов";
+            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t11,7\t368,3\t19\nСумма счета составляет 368,3\nВы заработали 19 бонусных баллов";
             Assert.AreEqual(expected, actual);
         }
         [Test()]
@@ -75,7 +91,7 @@ namespace ClassLibrary1
             b1.addGoods(i1);
             b1.addGoods(i2);
             string actual = b1.statement();
-            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t21,7\t368,3\t19\n\tFanta\t\t35\t1\t35\t0\t35\t0\nСумма счета составляет 403,3\nВы заработали 19 бонусных баллов";
+            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t11,7\t368,3\t19\n\tFanta\t\t35\t1\t35\t0\t35\t0\nСумма счета составляет 403,3\nВы заработали 19 бонусных баллов";
             Assert.AreEqual(expected, actual);
         }
         [Test()]
@@ -108,7 +124,37 @@ namespace ClassLibrary1
             b1.addGoods(i2);
             b1.addGoods(i3);
             string actual = b1.statement();
-            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t21,7\t368,3\t19\n\tPepsi\t\t50\t3\t150\t0\t150\t1\n\tFanta\t\t35\t1\t35\t0\t35\t1\nСумма счета составляет 553,3\nВы заработали 21 бонусных баллов";
+            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t11,7\t368,3\t19\n\tPepsi\t\t50\t3\t150\t0\t150\t1\n\tFanta\t\t35\t1\t35\t0\t35\t1\nСумма счета составляет 553,3\nВы заработали 21 бонусных баллов";
+            Assert.AreEqual(expected, actual);
+        }
+        [Test()]
+        public void Test_PepsiCola_Offer()
+        {
+            Goods cola = new Goods("Cola", Goods.REGULAR);
+            Goods pepsi = new Goods("Pepsi", Goods.SPECIAL_OFFER);
+            Item i1 = new Item(cola, 6, 65);
+            Item i2 = new Item(pepsi, 3, 50);
+            Customer x = new Customer("test", 10);
+            Bill b1 = new Bill(x);
+            b1.addGoods(i1);
+            b1.addGoods(i2);
+            string actual = b1.statement();
+            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t11,7\t368,3\t19\n\tPepsi\t\t50\t3\t150\t0\t150\t0\nСумма счета составляет 518,3\nВы заработали 19 бонусных баллов";
+            Assert.AreEqual(expected, actual);
+        }
+        [Test()]
+        public void Test_PepsiCola_Offer_EF()
+        {
+            Goods cola = new Goods("Cola", Goods.REGULAR);
+            Goods pepsi = new Goods("Pepsi", Goods.SPECIAL_OFFER);
+            Item i1 = new Item(cola, 6, 65);
+            Item i2 = new Item(pepsi, 11, 50);
+            Customer x = new Customer("test", 10);
+            Bill b1 = new Bill(x);
+            b1.addGoods(i1);
+            b1.addGoods(i2);
+            string actual = b1.statement();
+            string expected = "Счет для test\n\tНазвание\tЦена\tКол-воСтоимость\tСкидка\tСумма\tБонус\n\tCola\t\t65\t6\t390\t11,7\t368,3\t19\n\tPepsi\t\t50\t11\t550\t2,75\t547,25\t0\nСумма счета составляет 915,55\nВы заработали 19 бонусных баллов";
             Assert.AreEqual(expected, actual);
         }
     }

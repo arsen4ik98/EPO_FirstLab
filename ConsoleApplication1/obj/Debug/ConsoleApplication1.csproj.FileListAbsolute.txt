@@ -9,3 +9,9 @@ D:\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
 D:\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe
 D:\ConsoleApplication1\ConsoleApplication1\bin\Debug\ConsoleApplication1.pdb
 D:\ConsoleApplication1\ConsoleApplication1\obj\Debug\ConsoleApplication1.csprojResolveAssemblyReference.cache
+D:\Lab1EPO\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+D:\Lab1EPO\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+D:\Lab1EPO\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
+C:\Users\Арсен\Desktop\Универ\3 курс\ЭволПО\лабы\лаба1\Lab1EPO\ConsoleApplication1\bin\Debug\ConsoleApplication1.exe.config
+C:\Users\Арсен\Desktop\Универ\3 курс\ЭволПО\лабы\лаба1\Lab1EPO\ConsoleApplication1\obj\Debug\ConsoleApplication1.exe
+C:\Users\Арсен\Desktop\Универ\3 курс\ЭволПО\лабы\лаба1\Lab1EPO\ConsoleApplication1\obj\Debug\ConsoleApplication1.pdb
