@@ -28,5 +28,28 @@ namespace ConsoleApplication1
         {
             return _Goods;
         }
+        public void setGoods(Goods arg)
+        {
+            _Goods = arg;
+        }
+        public void setGoodsType(Goods arg)
+        {
+            _Goods = arg;
+        }
+        // прокси-метод GetBonus()
+        public int GetBonus()
+        {
+            return _Goods.GetBonus(_quantity, _price);
+        }
+        // прокси-метод GetDiscount()
+        public double GetDiscount()
+        {
+            return _Goods.GetDiscount(_quantity, _price);
+        }
+        public double GetSum()
+        {
+            double getsum = getQuantity() * getPrice();
+            return getsum;
+        }
     }
 }

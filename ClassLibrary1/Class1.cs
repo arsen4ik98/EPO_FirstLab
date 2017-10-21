@@ -16,8 +16,8 @@ namespace ClassLibrary1
 
         public void Test_PepsiCola1()
         {
-            Goods cola = new Goods("Cola", Goods.REGULAR);
-            Goods pepsi = new Goods("Pepsi", Goods.SALE);
+            Goods cola = new RegularGoods("Cola");
+            Goods pepsi = new SaleGoods("Pepsi");
             Item i1 = new Item(cola, 1, 65);
             Item i2 = new Item(pepsi, 4, 50);
             Customer x = new Customer("test", 10);
@@ -31,8 +31,8 @@ namespace ClassLibrary1
        [Test()]
         public void Test_PepsiCola()
         {
-            Goods cola = new Goods("Cola", Goods.REGULAR);
-            Goods pepsi = new Goods("Pepsi", Goods.SALE);
+            Goods cola = new RegularGoods("Cola");
+            Goods pepsi = new SaleGoods("Pepsi");
             Item i1 = new Item(cola, 6, 65);
             Item i2 = new Item(pepsi, 3, 50);
             Customer x = new Customer("test", 10);
@@ -46,7 +46,7 @@ namespace ClassLibrary1
         [Test()]
         public void Test_Cola()
         {
-            Goods cola = new Goods("Cola", Goods.REGULAR);
+            Goods cola = new RegularGoods("Cola");
             Item i1 = new Item(cola, 6, 65);
             Customer x = new Customer("test", 10);
             Bill b1 = new Bill(x);
@@ -58,7 +58,7 @@ namespace ClassLibrary1
         [Test()]
         public void Test_Pepsi()
         {
-            Goods pepsi = new Goods("Pepsi", Goods.REGULAR);
+            Goods pepsi = new RegularGoods("Pepsi");
             Item i2 = new Item(pepsi, 3, 50);
             Customer x = new Customer("test", 10);
             Bill b2 = new Bill(x);
@@ -70,7 +70,7 @@ namespace ClassLibrary1
         [Test()]
         public void Test_Fanta()
         {
-            Goods fanta = new Goods("Fanta", Goods.REGULAR);
+            Goods fanta = new RegularGoods("Fanta");
             Item i2 = new Item(fanta, 1, 35);
             Customer x = new Customer("test", 10);
             Bill b2 = new Bill(x);
@@ -82,8 +82,8 @@ namespace ClassLibrary1
         [Test()]
         public void Test_ColaFanta()
         {
-            Goods cola = new Goods("Cola", Goods.REGULAR);
-            Goods fanta = new Goods("Fanta", Goods.SALE);
+            Goods cola = new RegularGoods("Cola");
+            Goods fanta = new SaleGoods("Fanta");
             Item i1 = new Item(cola, 6, 65);
             Item i2 = new Item(fanta, 1, 35);
             Customer x = new Customer("test", 10);
@@ -97,8 +97,8 @@ namespace ClassLibrary1
         [Test()]
         public void Test_PepsiFanta()
         {
-            Goods pepsi = new Goods("Pepsi", Goods.REGULAR);
-            Goods fanta = new Goods("Fanta", Goods.SALE);
+            Goods pepsi = new RegularGoods("Pepsi");
+            Goods fanta = new SaleGoods("Fanta");
             Item i1 = new Item(pepsi, 3, 50);
             Item i2 = new Item(fanta, 1, 35);
             Customer x = new Customer("test", 10);
@@ -112,9 +112,9 @@ namespace ClassLibrary1
         [Test()]
         public void Test_PepsiColaFanta()
         {
-            Goods cola = new Goods("Cola", Goods.REGULAR);
-            Goods pepsi = new Goods("Pepsi", Goods.SALE);
-            Goods fanta = new Goods("Fanta", Goods.REGULAR);
+            Goods cola = new RegularGoods("Cola");
+            Goods pepsi = new SaleGoods("Pepsi");
+            Goods fanta = new RegularGoods("Fanta");
             Item i1 = new Item(cola, 6, 65);
             Item i2 = new Item(pepsi, 3, 50);
             Item i3 = new Item(fanta, 1, 35);
@@ -130,8 +130,8 @@ namespace ClassLibrary1
         [Test()]
         public void Test_PepsiCola_Offer()
         {
-            Goods cola = new Goods("Cola", Goods.REGULAR);
-            Goods pepsi = new Goods("Pepsi", Goods.SPECIAL_OFFER);
+            Goods cola = new RegularGoods("Cola");
+            Goods pepsi = new SpecialOrderGoods("Pepsi");
             Item i1 = new Item(cola, 6, 65);
             Item i2 = new Item(pepsi, 3, 50);
             Customer x = new Customer("test", 10);
@@ -145,8 +145,8 @@ namespace ClassLibrary1
         [Test()]
         public void Test_PepsiCola_Offer_EF()
         {
-            Goods cola = new Goods("Cola", Goods.REGULAR);
-            Goods pepsi = new Goods("Pepsi", Goods.SPECIAL_OFFER);
+            Goods cola = new RegularGoods("Cola");
+            Goods pepsi = new SpecialOrderGoods("Pepsi");
             Item i1 = new Item(cola, 6, 65);
             Item i2 = new Item(pepsi, 11, 50);
             Customer x = new Customer("test", 10);

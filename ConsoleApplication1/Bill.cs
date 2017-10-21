@@ -44,46 +44,6 @@ namespace ConsoleApplication1
               "\t" + bonus.ToString() + "\n";
             return result;
         }
-
-        public double GetDiscount(Item each)
-        {
-            double discount = 0;
-            switch (each.getGoods().getPriceCode())
-            {
-                case Goods.REGULAR:
-                    if (each.getQuantity() > 2)
-                        discount =
-                        (each.getQuantity() * each.getPrice()) * 0.03; // 3%
-                    break;
-                case Goods.SPECIAL_OFFER:
-                    if (each.getQuantity() > 10)
-                        discount =
-                        (each.getQuantity() * each.getPrice()) * 0.005; // 0.5%
-                    break;
-                case Goods.SALE:
-                    if (each.getQuantity() > 3)
-                        discount =
-                        (each.getQuantity() * each.getPrice()) * 0.01; // 1%
-                    break;
-            }
-            return discount;
-        }
-
-        public int GetBonus(Item each)
-        {
-            int bonus = 0;
-            switch (each.getGoods().getPriceCode())
-            {
-                case Goods.REGULAR:
-                    bonus = (int)(GetSum(each) * 0.05);
-                    break;
-                case Goods.SALE:
-                    bonus = (int)(GetSum(each) * 0.01);
-                    break;
-            }
-            return bonus;
-        }
-
         public double GetSum(Item each)
         {
             double getsum = each.getQuantity() * each.getPrice();
@@ -93,11 +53,11 @@ namespace ConsoleApplication1
         public double GetUsedBonus(Item each, double thisAmount, double discount)
         {
             double usedBonus = 0;
-            if ((each.getGoods().getPriceCode() == Goods.REGULAR) && each.getQuantity() > 5)
+            if (each.getGoods().GetType() == typeof(RegularGoods) && each.getQuantity() > 5)
             {
                 usedBonus += _customer.useBonus((int)(thisAmount - discount));
             }
-            if ((each.getGoods().getPriceCode() == Goods.SPECIAL_OFFER) && each.getQuantity() > 1)
+            if (each.getGoods().GetType() == typeof(SpecialOrderGoods) && each.getQuantity() > 1)
             {
                 usedBonus += _customer.useBonus((int)(thisAmount - discount));
             }
@@ -118,8 +78,8 @@ namespace ConsoleApplication1
 
                 Item each = (Item)items.Current;
                 //определить сумму для каждой строки
-                double discount = GetDiscount(each);
-                int bonus = GetBonus(each);
+                double discount = each.GetDiscount();
+                int bonus = each.GetBonus();
                 // сумма
                 sumWithDiscount = GetSum(each) - discount;
                 usedBonus = GetUsedBonus(each, sumWithDiscount, discount);

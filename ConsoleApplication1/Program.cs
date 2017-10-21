@@ -38,17 +38,17 @@ namespace ConsoleApplication1
                 result = line.Split(':');
                 result = result[1].Trim().Split();
                 string type = result[1].Trim();
-                int t = 0;
+                Goods g1 = null;
                 switch (type)
                 {
-                    case "REG": t = Goods.REGULAR;
+                    case "REG": g1 = new RegularGoods(result[0]);
                         break;
-                    case "SAL": t = Goods.SALE;
+                    case "SAL": g1 = new SaleGoods(result[0]);
                         break;
-                    case "SPO": t = Goods.SPECIAL_OFFER;
+                    case "SPO": g1 = new SpecialOrderGoods(result[0]);
                         break;
                 }
-                g[i] = new Goods(result[0], t);
+                g[i] = g1;
             }
             // read items count
             // Пропустить комментарии
